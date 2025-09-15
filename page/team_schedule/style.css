@@ -1,0 +1,199 @@
+.quarter-management{margin: 30px 0 0;}
+.quarter-management > .flex{justify-content: space-between; margin-top: 10px;}
+
+.quarter-tabs{display: flex; gap:5px}
+.quarter-tabs .quarter-btn{border: 0; background: #fff; color: #555; display: block; flex:1; line-height: 40px; border-radius:5px;}
+.quarter-tabs .quarter-btn.active{background: #00a2ff; color: #fff;}
+
+.quarter-header #quarter_count{margin: 0 5px;}
+
+.quarter-header-controls{display: flex; padding: 5px; justify-content: flex-end; gap:5px}
+.quarter-header-controls button{background: #fff; border: 1px solid #e1e1e1; line-height: 30px; padding: 0 10px;}
+.quarter-controls{display: flex; align-items: center}
+.quarter-controls button{font-size: 15px; font-weight: 600;}
+
+.quarter-reset-controls button{font-size: 11px;}
+
+.formation-select label{display: none;}
+.formation-select .nice-select{font-size: 12px;}
+
+.player-list-panel{display: none;}
+.player-list-panel .player-list{display: grid; grid-template-columns: repeat(4, 1fr); gap: 1vw;}
+
+.player-list-panel .player-list .player-item{border-radius: 5px; padding: 5px;}
+.player-list-panel .player-list .player-item .player-number {background: #000;color: #fff;padding: 0px 5px;border-radius: 3px;font-size: 10px;min-width: 22px;display: inline-block;text-align: center;line-height: 18px;}
+
+.player-list-panel .player-list .player-item .player-quarters{display: none; margin-top: 5px; font-size: 10px; color: #777;}
+.player-list-panel .player-list .player-item.current{opacity: 0.5;}
+
+.player-list-panel .player-list-panel h3{margin-bottom: 5px;}
+.field-panel{margin-top: 10px;}
+.soccer-field, .futsal-field {background: url('/img/field.jpg') no-repeat;background-size: cover;padding: 15px 10px;border-radius: 10px;min-height: 400px;display: flex;flex-direction: column;justify-content: space-around;}
+
+
+.soccer-field .position-row{display: flex;justify-content: space-around; align-items: center; }
+.soccer-field .position-row .position {text-align: center; background: #fff; padding: 5px; border-radius:5px; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 30%); min-width: 70px; max-width: min-content;}
+
+.soccer-field .position-row .position .position-label{font-size: 10px;}
+.soccer-field .position-row .position .position-player{}
+.soccer-field .position-row .position .number{background: #000; color: #fff; padding: 2px 2px; border-radius:3px; font-size: 10px; width: 16px; display: block; margin: 3px auto;}
+.soccer-field .position-row .position .player-number{background: #000; color: #fff; padding: 2px 2px; border-radius:3px; font-size: 10px;width: 16px; display: block; margin: 3px auto;}
+
+
+
+.quarter-reset-controls{margin-top: 10px; display: flex; gap:10px; justify-content: center}
+.quarter-reset-controls button{border: 1px solid #e1e1e1; background: #fff; color: #000; line-height: 40px; padding: 0 10px; border-radius:5px;}
+
+
+
+.team-tabs {display: flex; gap:5px; margin: 10px 0 -20px; text-align: center;}
+.team-tabs .team-tab{border: 0; background: #fff; color: #555; display: block; flex:1; line-height: 40px; border-radius:5px;}
+.team-tabs .team-tab.active{background: #3b4781; color: #fff;}
+
+
+
+/* 스쿼드 관리 모달 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+	min-height: 70vh;
+
+	padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.modal-content > .flex{justify-content: space-between; margin-bottom: 5px;}
+
+
+.modal-header .modal-close {
+    position: absolute;
+    right: 10px;
+    top: -40px;
+    background: #fff;
+	border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #000;
+}
+
+.modal-content .modal-footer{display: flex; gap:5px}
+.modal-content .modal-footer button{border: 0; background: #000; color: #fff; line-height: 35px; padding: 0 10px; border-radius:5px;}
+.modal-content .modal-footer button.btn-clear{background: #00a2ff; color: #fff; border: 0;}
+
+
+.dosmodal .player-section2{border-top: 1px solid #000; margin-bottom: 20px; padding: 5px;}
+
+.dosmodal .player-list{display: grid; grid-template-columns: repeat(4, 1fr); gap: 2vw; margin: 10px 0;}
+
+.dosmodal .player-list .player-info .player-number{background: #000; color: #fff; padding: 2px 2px; border-radius:3px; font-size: 10px;width: 16px; display: block; margin: 3px auto;}
+.dosmodal .player-list  > li{border: 1px solid #e1e1e1; border-radius:5px; padding: 5px;}
+.dosmodal .player-list  > li .current-badge{display: block; color: #2196f3;}
+.dosmodal .player-list  > li .player-badges{display: block; color: #777; font-size: 11px; }
+
+
+
+
+
+
+
+  label.radio-wrapper-8 {
+    display: block;
+    cursor: pointer;
+  }
+  label.radio-wrapper-8 input {
+    display: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+  label.radio-wrapper-8 input + span {
+    line-height: 22px;
+    height: 22px;
+    padding-left: 22px;
+    display: block;
+    position: relative;
+  }
+  label.radio-wrapper-8 input + span:not(:empty) {
+    padding-left: 27px;
+  }
+  label.radio-wrapper-8 input + span:before, label.radio-wrapper-8 input + span:after {
+    content: "";
+    width: 22px;
+    height: 22px;
+    display: block;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+  label.radio-wrapper-8 input + span:before {
+    background: #D1D7E3;
+    transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  }
+  label.radio-wrapper-8 input + span:after {
+    background: #fff;
+    transform: scale(0.78);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  }
+  label.radio-wrapper-8 input:checked + span:before {
+    transform: scale(1.04);
+    background: #5D9BFB;
+  }
+  label.radio-wrapper-8 input:checked + span:after {
+    transform: scale(0.4);
+    transition: transform 0.3s ease;
+  }
+  label.radio-wrapper-8:hover input + span:before {
+    transform: scale(0.92);
+  }
+  label.radio-wrapper-8:hover input + span:after {
+    transform: scale(0.74);
+  }
+  label.radio-wrapper-8:hover input:checked + span:after {
+    transform: scale(0.4);
+  }
+.team-qty{margin: 10px 0;}
+.teams-info{display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px;}
+.add-team-txt ul {display: flex; gap:10px}
+.add-team-txt ul li{}
+.add-team-txt ul li:first-child span:before{content:''}
+.add-team-txt ul li span:before{content:"/"}
+.teams-info .add-btn{display: flex; gap:5px}
+.teams-info .add-btn a{display: flex; align-items: center; line-height: 25px; padding: 0 10px; background: #333; color: #fff; border-radius:3px; gap:5px}
+.teams-info .add-btn a span{font-size: 15px;}
+
+.team-add .player{display: flex; background: #fff; margin: 5px 0; justify-content: space-between; padding: 10px; align-items: center}
+.team-add .player .form_div ul{display: flex; gap:10px}
+.team-add .player .form_div ul li > div{background: #fff; padding: 5px 10px; }
+.team-add .player i{display: inline-block; line-height: 20px; padding: 0 5px; background: #000; border-radius:3px; color: #fff; text-align: center; width: 25px;}
+#result_area .btn-box{text-align: center; margin-top: 20px;}
+#result_area .btn-box button{background: #fff; color: #000; border: 0; line-height: 30px; padding: 0 10px; border-radius:5px;}
+
+
+.team-box .team{border: 1px solid #e1e1e1; border-radius:15px; padding: 15px; margin: 20px 0; background: #fff;}
+.team-box .team  h2{font-size: 17px;}
+.team-box .team .player {display: grid;grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));gap: 1vw; 
+background: #fff;margin: 5px 0;justify-content: space-between;padding: 10px;align-items: center;}
+.team-box .team .player li{border: 1px solid #e1e1e1; border-radius:5px; padding: 10px; }
+.team-box .team .player li span{display: block; width: 16px; line-height: 16px; background: #000; color: #fff; text-align: center; border-radius:3px; font-size: 10px;}
+.team-box .team .player li p{margin-top: 5px; font-size: 14px;}
+
+

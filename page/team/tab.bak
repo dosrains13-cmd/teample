@@ -1,0 +1,146 @@
+
+
+<?php if($code2 == "team" && ($is_member_team || $is_admin_team)){ 
+	$sql = "select * from sweb_team_schedule where te_id = '{$te_id}' and ts_end_date >= '".date("Y-m-d")."' order by ts_id desc limit 0, 1";
+	$sql = "select * from sweb_team_schedule where te_id = '{$te_id}' order by ts_id desc limit 0, 1";
+
+	$sc = sql_fetch($sql);
+
+if($sc){	?>
+<div class="latest-schedule">
+	<div>
+		<a href="../team_schedule/view.php?ts_id=<?php echo $sc['ts_id']?>&te_id=<?php echo $te_id; ?>">
+			<i class="icon">N</i> <?php echo $sc['ts_start_date']; ?> (<?php echo get_yoil($sc['ts_start_date']); ?>) / <?php echo $sc['ts_start_time']; ?> ~ <?php echo $sc['ts_end_time']; ?>
+			<!--<span><u><img src="http://team.sweb.kr/data/file/team/thumb-3555006680_953616_backho_600x0.png" alt=""></u>백호FC</span>-->
+		</a>
+	</div>
+</div>
+<?php }} ?>
+
+<div class="team-intro team-box <?php echo ($code2 == "team" && $code3 == "view") ? "" : "close"; ?>">
+	<div>
+		<a href="#none" class="team-toggle"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+		<?php
+		$f_path = G5_DATA_PATH . "/file/team/";
+		$f_url = G5_DATA_URL . "/file/team/";
+		$thumb = thumbnail($parent['file_rename'], $f_path, $f_path, 600, 0, false, false, 'center', false, '80/0.5/3');
+		if($thumb){ ?>
+		<div class="team-logo">
+			<img src="<?php echo $f_url . $thumb; ?>" alt="" />
+		</div>
+		<?php }	?>
+		<div class="team-info">
+			<h2>
+				<?php echo $parent['te_name']; ?>
+				<?php if($is_admin_team){ ?>
+				<a href="../team/form.php?te_id=<?php echo $te_id; ?>" class="team_adm">
+					<i class="fa fa-cog" aria-hidden="true"></i>
+				</a> 
+				<?php } ?>
+				
+			</h2>
+			<a href="#none" onclick="fn_good();return false;" id="good_area">
+				<?php if($parent['is_good']){ ?>
+				<i class="fa fa-heart" aria-hidden="true"></i>
+				<?php }else{ ?>
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+				<?php } ?>
+				  Like <?php echo number_format($parent['good_cnt']); ?>
+			</a>
+			<p><?php echo $parent['te_day']; ?></p>
+			<p><?php echo $parent['te_location1'] ? fn_getCodeValue($parent['te_location1']) : ""; ?> <?php echo $parent['te_location2'] ? fn_getCodeValue($parent['te_location2']) : ""; ?></p>
+			<pre>
+				<?php echo $parent['te_content']; ?>
+			</pre>
+			<?php if($parent['te_is_tel']){ ?>
+				<?php if($parent['te_tel']){ ?>
+			<p class="tel"><a href="tel:<?php echo $parent['te_tel']; ?>"><?php echo $parent['te_tel']; ?></a></p>
+				<?php } ?>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+<div class="team-tab">
+	<ul>
+		<li class="<?php echo $code2 == "team" ? "on" : ""; ?>"><a href="../team/view.php?te_id=<?php echo $te_id; ?>"><i class="fa fa-info" aria-hidden="true"></i> 팀 소개</a></li>
+		<li class="<?php echo $code2 == "team_join" && $code3 == "list" ? "on" : ""; ?>"><a href="../team_join/list.php?te_id=<?php echo $te_id; ?>"><i class="fa fa-users" aria-hidden="true"></i>  멤버</a></li>
+		<li class="<?php echo $code2 == "team_schedule" ? "on" : ""; ?>"><a href="../team_schedule/list.php?te_id=<?php echo $te_id; ?>"><i class="fa fa-calendar" aria-hidden="true"></i> 일정</a></li>
+		<?php if($is_member_team){ ?>
+		<li class="<?php echo $code2 == "team_join" && $code3 == "write" ? "on" : ""; ?>"><a href="../team_join/form.php?te_id=<?php echo $te_id; ?>"><i class="fa fa-cog" aria-hidden="true"></i> 정보 수정</a></li>
+		<?php }else if($parent['te_is_join'] || $is_admin_team){ ?>
+		<li class="<?php echo $code2 == "team_join" && $code3 == "write" ? "on" : ""; ?>"><a href="../team_join/form.php?te_id=<?php echo $te_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> 팀 가입</a></li>
+		<?php } ?>
+	</ul>
+</div>
+
+
+<!-- 좋아요 호출 form start -->
+<form method="post" id="goodForm" name="goodForm" action="">
+	<input type="hidden" name="w" value="g" />
+	<input type="hidden" name="te_id" value="<?php echo $te_id; ?>" />
+</form>
+<!-- // 좋아요 호출 form end -->
+
+
+<script>
+$('.team-toggle').click(function(){
+	$( this ).parent().parent().toggleClass( 'close' )
+});
+
+// 좋아요 클릭
+function fn_good(){
+	if(<?php echo $is_member ? "1" : "0"; ?>){
+	
+		var formData = new FormData($('#goodForm')[0]);
+		var url = "../team/update.php";
+
+		$.ajax({
+			url : url,
+			type : 'post',
+			data : formData,
+			dataType : 'json',
+			asynsc : true,
+			cache : false,
+			contentType : false,
+			processData : false,
+			beforeSend:function(){
+				loadingStart();
+			},
+			success : function(data, jqXHR, textStatus){
+				if(data.status){
+					var html = '';
+					
+					if(data.flag == 'GOOD'){
+						html += '<i class="fa fa-heart" aria-hidden="true"></i> Like ' + number_format(data.cnt);
+					}else{
+						html += '<i class="fa fa-heart-o" aria-hidden="true"></i> Like ' + number_format(data.cnt);
+					}
+					$('#good_area').html(html);
+				}else{
+					alert(data.msg);
+					$('#error_txt').val(data.msg);
+					$('#error_area').show();
+				}
+
+				if(data.reload){
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				//alert("처리 중 오류가 발생하였습니다. 다시 시도해주세요.");
+				alert(jqXHR.responseText + "//" + textStatus + "//" + errorThrown);
+			},
+			complete : function(){
+				loadingEnd();
+			}
+		});
+
+	}else{
+		alert("Available after login.");
+	}
+
+	return false;
+}
+
+
+</script>
